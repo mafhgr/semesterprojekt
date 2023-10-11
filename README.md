@@ -15,7 +15,7 @@ Die Idee dieses Projekts besteht darin, eine webbasierte Anwendung zu entwickeln
 - **Sparziele und Fortschrittsverfolgung**: Benutzer können Sparziele definieren und ihren Fortschritt verfolgen.
 - **Berichte und Diagramme**: Grafische Darstellung des Budgetverlaufs, Einnahmen, Ausgaben und Sparziele.
 - **Benutzerprofil**: Persönliche Informationen und Budgeteinstellungen des Benutzers.
-- **Finanzielle Gesundheit**: Tipps und Tricks für das investieren, sparen und budgetieren.
+- **Finanzielle Gesundheit**: Tipps und Tricks für das Investieren, Sparen und Budgetieren.
 - **Benachrichtigungen und Erinnerungen**: Benutzer können benachrichtigt werden, wenn Budgetziele erreicht oder überschritten werden.
 
 ## Einlesen, Speichern, Ausgeben von Daten
