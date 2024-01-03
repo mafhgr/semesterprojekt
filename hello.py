@@ -1,6 +1,6 @@
 from flask import Flask, render_template
 
-app = Flask("Mein Semesterprojekt")
+app = Flask("Mein Se")
 
 #Pfad, den der Benutzer aufruft
 @app.route('/')
