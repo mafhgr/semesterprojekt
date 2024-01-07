@@ -1,10 +1,33 @@
 {% extends "base.html" %}
 
 {% block header %}
+
 {% endblock %}
 
 
 {% block content %}
+<h1>Transaktion hinzufügen</h1>
+    <form method="POST" action="/budget">
+        <label for="transaktion">Transaktion:</label>
+        <input type="text" name="transaktion" required><br>
+
+        <label for="kosten">Kosten:</label>
+        <input type="number" name="kosten" required><br>
+
+        <label for="kategorie">Kategorie:</label>
+        <input type="text" name="kategorie" required><br>
+
+        <label for="datum">Datum:</label>
+        <input type="date" name="datum" required><br>
+
+        <label for="bemerkungen">Bemerkungen:</label>
+        <textarea name="bemerkungen"></textarea><br>
+
+        <input type="submit" value="Transaktion hinzufügen">
+    </form>
+
+    <a href="/transaktionsverlauf">Gespeicherte Transaktionen anzeigen</a>
+
 {% endblock %}
 
 {% block footer %}
