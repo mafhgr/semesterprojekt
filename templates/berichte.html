@@ -5,6 +5,33 @@
 
 
 {% block content %}
+ <!-- Erstelle einen Container für jedes Chart -->
+ {% for kategorie, daten in berichtsdaten.items() %}
+ {% if daten.transaktionen %}
+     <h3>{{ kategorie }}</h3>
+     <canvas id="chart-{{ kategorie }}"></canvas>
+ {% endif %}
+{% endfor %}
+
+
+ // Erstelle die Charts
+ {% for kategorie, daten in berichtsdaten.items() %}
+     {% if daten.transaktionen %}
+         var ctx = document.getElementById('chart-{{ kategorie }}').getContext('2d');
+         new Chart(ctx, {
+             type: 'pie',
+             data: {
+                 labels: ['Ausgegeben', 'Verbleibend'],
+                 datasets: [{
+                     label: '{{ kategorie }}',
+                     data: [{{ daten.ausgegeben }}, {{ daten.verbleibend }}],
+                     backgroundColor: ['red', 'green'],
+                 }]
+             }
+         });
+     {% endif %}
+ {% endfor %}
+
 {% endblock %}
 
 {% block footer %}
