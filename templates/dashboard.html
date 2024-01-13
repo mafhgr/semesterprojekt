@@ -6,15 +6,30 @@
 
 {% block content %}
 <h1>Transaktion hinzufügen</h1>
-    <form method="POST" action="/budget">
+    <form method="POST" action="/dashboard">
         <label for="transaktion">Transaktion:</label>
         <input type="text" name="transaktion" required><br>
 
-        <label for="kosten">Kosten:</label>
-        <input type="number" name="kosten" required><br>
+        <label for="transaktionsart">Transaktionsart:</label>
+        <select name="transaktionsart" id="transaktionsart" required>
+            <option value="">--Bitte wählen--</option>
+            <option value="einnahme">Einnahme</option>
+            <option value="ausgabe">Ausgabe</option>
+        </select><br>    
+
+
+        <label for="betrag">Betrag:</label>
+        <input type="number" name="betrag" required><br>
 
         <label for="kategorie">Kategorie:</label>
-        <input type="text" name="kategorie" required><br>
+        <select name="kategorie" id="kategorie" required>
+            <option value="">--Bitte wählen--</option>
+            <option value="einkauf">Einkauf</option>
+            <option value="miete">Miete</option>
+            <option value="freizeit">Freizeit</option>
+            <option value="rechnungen">Rechnungen</option>
+        </select><br>
+
 
         <label for="datum">Datum:</label>
         <input type="date" name="datum" required><br>
