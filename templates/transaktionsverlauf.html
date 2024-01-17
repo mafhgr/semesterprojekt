@@ -14,17 +14,17 @@
     <ul>
         {% for transaktion in transaktionen %}
             <li>
-                <strong>Transaktion:</strong> {{ transaktion['Transaktion'] }}<br>
-                <strong>Transaktionsart:</strong> {{ transaktion['Transaktionsart'] }}<br>
-                <strong>Betrag:</strong> {{ transaktion['Betrag'] }}<br>
-                <strong>Kategorie:</strong> {{ transaktion['Kategorie'] }}<br>
-                <strong>Datum:</strong> {{ transaktion['Datum'] }}<br>
-                <strong>Bemerkungen:</strong> {{ transaktion['Bemerkungen'] }}<br>
+                <strong>Transaktion:</strong> {{ transaktionen['Transaktion'] }}<br>
+                <strong>Transaktionsart:</strong> {{ transaktionen['Transaktionsart'] }}<br>
+                <strong>Betrag:</strong> {{ transaktionen['Betrag'] }}<br>
+                <strong>Kategorie:</strong> {{ transaktionen['Kategorie'] }}<br>
+                <strong>Datum:</strong> {{ transaktionen['Datum'] }}<br>
+                <strong>Bemerkungen:</strong> {{ transaktionen['Bemerkungen'] }}<br>
             </li>
         {% endfor %}
     </ul>
 
-    <a href="/dashboard">Zurück zur Transaktion hinzufügen</a>
+    <a href="/home">Zurück zur Transaktion hinzufügen</a>
 
 {% endblock %}
 
