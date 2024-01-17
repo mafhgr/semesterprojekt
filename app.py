@@ -1,7 +1,5 @@
-from flask import Flask, render_template, redirect, url_for, request, session, flash
-import json
+from semesterprojekt import create_app
 
-app = Flask("Mein Semesterprojekt")
 
 
 #Dashboard
@@ -78,5 +76,4 @@ def berichte():
 
 
 if __name__ == '__main__':
-    app.secret_key = 'dein_geheimer_schluessel'
     app.run(debug=True, port=5000)
