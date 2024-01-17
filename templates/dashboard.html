@@ -1,14 +1,27 @@
 {% extends "base.html" %}
 
-{% block title %}Berichte{% endblock %}
-
-
-{% block header %}
-{% endblock %}
-
+{% block title %}Dashboard{% endblock %}
 
 {% block content %}
-{% endblock %}
+<div class="container mt-4">
+    <h1 class="mb-4">Dashboard</h1>
 
-{% block footer %}
+    <div class="row">
+        <div class="col-md-4">
+            <div class="alert alert-info">
+                <strong>Anzahl Transaktionen:</strong> {{ anzahl_transaktionen }}
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="alert alert-success">
+                <strong>Gesamte Ausgaben:</strong> {{ gesamtvolumen_ausgaben | round(2) }} CHF
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="alert alert-warning">
+                <strong>Gesamte Einnahmen:</strong> {{ gesamtvolumen_einnahmen | round(2) }} CHF
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

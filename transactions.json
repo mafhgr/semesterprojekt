@@ -1,34 +1,18 @@
 [
     {
-        "Transaktion": "Lebensmittel",
-        "Transaktionsart": "Ausgabe",
-        "Betrag": "50",
-        "Kategorie": "Haushalt",
-        "Datum": "2024-01-17",
-        "Bemerkungen": ""
-    },
-    {
         "Transaktion": "Lebensmitteleinkauf",
         "Transaktionsart": "Ausgabe",
-        "Betrag": "45",
-        "Kategorie": "Haushalt",
-        "Datum": "2024-01-17",
-        "Bemerkungen": ""
-    },
-    {
-        "Transaktion": "Test",
-        "Transaktionsart": "Ausgabe",
         "Betrag": "50",
-        "Kategorie": "Bildung",
-        "Datum": "2024-01-18",
+        "Kategorie": "Haushalt",
+        "Datum": "2024-01-26",
         "Bemerkungen": ""
     },
     {
-        "Transaktion": "Lohn Januar",
+        "Transaktion": "test",
         "Transaktionsart": "Einnahme",
-        "Betrag": "3000.00",
-        "Kategorie": "Lohn",
-        "Datum": "2024-01-25",
+        "Betrag": "40",
+        "Kategorie": "Sonstiges",
+        "Datum": "2024-01-24",
         "Bemerkungen": ""
     }
 ]

@@ -6,7 +6,22 @@ app.config['SECRET_KEY'] = 'hjshjhdjah kjshkjdhjs'
 
 @app.route('/')
 def home():
-    return render_template('home.html')
+    return render_template('dashboard.html')
+
+@app.route('/dashboard')
+def dashboard():
+    transaktionen = load_transactions()
+    anzahl_transaktionen = len(transaktionen)
+    gesamtvolumen_ausgaben = sum(float(t['Betrag']) for t in transaktionen if t['Transaktionsart'] == 'Ausgabe')
+    gesamtvolumen_einnahmen = sum(float(t['Betrag']) for t in transaktionen if t['Transaktionsart'] == 'Einnahme')
+
+    return render_template('dashboard.html', anzahl_transaktionen=anzahl_transaktionen, 
+                           gesamtvolumen_ausgaben=gesamtvolumen_ausgaben,
+                           gesamtvolumen_einnahmen=gesamtvolumen_einnahmen)
+
+
+
+
 
 def save_transactions(transactions):
     with open('semesterprojekt/transactions.json', 'w') as file:
@@ -52,9 +67,6 @@ def transaktionsverlauf():
     for transaktion in transaktionen:
         transaktion['Betrag'] = float(transaktion['Betrag'])
     return render_template('transaktionsverlauf.html', transaktionen=transaktionen)
-
-
-
 
 
 # Funktionen für Budgets
