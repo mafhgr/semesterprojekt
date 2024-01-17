@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">Transaktion hinzufügen</h1>
+    <form method="POST">
+        <div class="form-group">
+            <label for="transaktion">Transaktion:</label>
+            <input type="text" class="form-control" name="transaktion" id="transaktion" required>
+        </div>
+
+        <div class="form-group">
+            <label for="transaktionsart">Transaktionsart:</label>
+            <select class="form-control" name="transaktionsart" id="transaktionsart" required>
+                <option value="">--Bitte wählen--</option>
+                <option value="Einnahme">Einnahme</option>
+                <option value="Ausgabe">Ausgabe</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="betrag">Betrag:</label>
+            <input type="number" class="form-control" name="betrag" id="betrag" required>
+        </div>
+
+        <div class="form-group">
+            <label for="kategorie">Kategorie:</label>
+            <select class="form-control" name="kategorie" id="kategorie" required>
+                <option value="">--Bitte wählen--</option>
+                <option value="Miete">Miete</option>
+                <option value="Lohn">Lohn</option>
+                <option value="Gewinn oder Schenkung">Gewinn oder Schenkung</option>
+                <option value="Haushalt">Haushalt</option>
+                <option value="Transport">Transport</option>
+                <option value="Gesundheit">Gesundheit</option>
+                <option value="Bildung">Bildung</option>
+                <option value="Freizeit">Freizeit</option>
+                <option value="Sparen und Investieren">Sparen und Investieren</option>
+                <option value="Kinder">Kinder</option>
+                <option value="Haustiere">Haustiere</option>
+                <option value="Spenden und Geschenke">Spenden und Geschenke</option>
+                <option value="Sonstiges">Sonstiges</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="datum">Datum:</label>
+            <input type="date" class="form-control" name="datum" id="datum" required>
+        </div>
+
+        <div class="form-group">
+            <label for="bemerkungen">Bemerkungen:</label>
+            <textarea class="form-control" name="bemerkungen" id="bemerkungen"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Transaktion hinzufügen</button>
+    </form>
+
+    <a href="/transaktionsverlauf" class="btn btn-link mt-3">Gespeicherte Transaktionen anzeigen</a>
+</div>
+{% endblock %}

@@ -2,66 +2,66 @@
 
 {% block title %}Budget{% endblock %}
 
-{% block header %}
-
-{% endblock %}
-
-
 {% block content %}
-<h1>Monatliches Budget erstellen</h1>
-    <form action="{{ url_for('submit_budget') }}" method="post">
-        <label for="month">Monat:</label>
-        <select id="month" name="month" required>
-            <option value="">--Bitte wählen--</option>
-            <option value="Januar">Januar</option>
-            <option value="Februar">Februar</option>
-            <option value="März">März</option>
-            <option value="April">April</option>
-            <option value="Mai">Mai</option>
-            <option value="Juni">Juni</option>
-            <option value="Juli">Juli</option>
-            <option value="August">August</option>
-            <option value="September">September</option>
-            <option value="Oktober">Oktober</option>
-            <option value="November">November</option>
-            <option value="Dezember">Dezember</option>
-        </select><br><br>
-        
-        
+<div class="container mt-4">
+    <h1 class="mb-4">Monatliches Budget erstellen</h1>
+    <form action="{{ url_for('budget') }}" method="post" class="mb-4">
+        <div class="form-group">
+            <label for="month">Monat:</label>
+            <select id="month" name="month" class="form-control" required>
+                <option value="">--Bitte wählen--</option>
+                <option value="Januar">Januar</option>
+                <option value="Februar">Februar</option>
+                <option value="März">März</option>
+                <option value="April">April</option>
+                <option value="Mai">Mai</option>
+                <option value="Juni">Juni</option>
+                <option value="Juli">Juli</option>
+                <option value="August">August</option>
+                <option value="September">September</option>
+                <option value="Oktober">Oktober</option>
+                <option value="November">November</option>
+                <option value="Dezember">Dezember</option>
+            </select>
+        </div>
 
-        <label for="category">Kategorie:</label>
-        <select name="category" id="category" required>
-            <option value="">--Bitte wählen--</option>
-            <option value="Miete">Miete</option>
-            <option value="Haushalt">Haushalt</option>
-            <option value="Transport">Transport</option>
-            <option value="Gesundheit">Gesundheit</option>
-            <option value="Bildung">Bildung</option>
-            <option value="Freizeit">Freizeit</option>
-            <option value="Sparen und Investieren">Sparen und Investieren</option>
-            <option value="Kinder">Kinder</option>
-            <option value="Haustiere">Haustiere</option>
-            <option value="Spenden und Geschenke">Spenden und Geschenke</option>
-            <option value="Sonstiges">Sonstiges</option>
-        </select><br>
+        <div class="form-group">
+            <label for="category">Kategorie:</label>
+            <select name="category" id="category" class="form-control" required>
+                <option value="">--Bitte wählen--</option>
+                <option value="Miete">Miete</option>
+                <option value="Haushalt">Haushalt</option>
+                <option value="Transport">Transport</option>
+                <option value="Gesundheit">Gesundheit</option>
+                <option value="Bildung">Bildung</option>
+                <option value="Freizeit">Freizeit</option>
+                <option value="Sparen und Investieren">Sparen und Investieren</option>
+                <option value="Kinder">Kinder</option>
+                <option value="Haustiere">Haustiere</option>
+                <option value="Spenden und Geschenke">Spenden und Geschenke</option>
+                <option value="Sonstiges">Sonstiges</option>
+            </select>
+        </div>
 
-        <label for="amount">Betrag:</label>
-        <input type="number" id="amount" name="amount" step="0.01"><br><br>
+        <div class="form-group">
+            <label for="amount">Betrag:</label>
+            <input type="number" id="amount" name="amount" class="form-control" step="0.01">
+        </div>
 
-        <input type="submit" value="Budget hinzufügen">
+        <button type="submit" class="btn btn-primary">Budget hinzufügen</button>
     </form>
 
     <h2>Gespeicherte Budgets</h2>
     {% if budgets %}
-        <ul>
+    <ul class="list-group">
         {% for budget in budgets %}
-            <li>{{ budget.month }}: {{ budget.category }} - {{ budget.amount }}</li>
+            <li class="list-group-item">
+                {{ budget.month }}: {{ budget.category }} - {{ budget.amount }} CHF
+            </li>
         {% endfor %}
-        </ul>
+    </ul>
     {% else %}
-        <p>Noch keine Budgets gespeichert.</p>
+        <p>Keine Budgets gespeichert.</p>
     {% endif %}
-{% endblock %}
-
-{% block footer %}
+</div>
 {% endblock %}

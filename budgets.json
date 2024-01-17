@@ -1,0 +1,12 @@
+[
+    {
+        "month": "Januar",
+        "category": "Haushalt",
+        "amount": "500"
+    },
+    {
+        "month": "Januar",
+        "category": "Miete",
+        "amount": "600"
+    }
+]
