@@ -51,17 +51,32 @@
         <button type="submit" class="btn btn-primary">Budget hinzufügen</button>
     </form>
 
-    <h2>Gespeicherte Budgets</h2>
     {% if budgets %}
-    <ul class="list-group">
-        {% for budget in budgets %}
-            <li class="list-group-item">
-                {{ budget.month }}: {{ budget.category }} - {{ budget.amount }} CHF
-            </li>
-        {% endfor %}
-    </ul>
-    {% else %}
-        <p>Keine Budgets gespeichert.</p>
-    {% endif %}
-</div>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Monat</th>
+                <th>Kategorie</th>
+                <th>Betrag</th>
+                <th>Aktion</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for budget in budgets %}
+                <tr>
+                    <td>{{ budget['month'] }}</td>
+                    <td>{{ budget['category'] }}</td>
+                    <td>{{ budget['amount'] }} CHF</td>
+                    <td>
+                        <a href="{{ url_for('delete_budget', budget_id=budget['id']) }}" class="btn btn-danger btn-sm">Löschen</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>Keine Budgets vorhanden.</p>
+{% endif %}
+
+
 {% endblock %}

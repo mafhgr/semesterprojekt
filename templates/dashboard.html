@@ -12,16 +12,52 @@
                 <strong>Anzahl Transaktionen:</strong> {{ anzahl_transaktionen }}
             </div>
         </div>
+
         <div class="col-md-4">
             <div class="alert alert-warning">
-                <strong>Gesamte Ausgaben:</strong> {{ gesamtvolumen_ausgaben | round(2) }} CHF
+                <strong>Gesamte Ausgaben:</strong> 
+                {% if gesamtvolumen_ausgaben %}
+                    {{ gesamtvolumen_ausgaben | round(2) }} CHF
+                {% else %}
+                    0 CHF
+                {% endif %}
             </div>
         </div>
+
         <div class="col-md-4">
             <div class="alert alert-success">
-                <strong>Gesamte Einnahmen:</strong> {{ gesamtvolumen_einnahmen | round(2) }} CHF
+                <strong>Gesamte Einnahmen:</strong> 
+                {% if gesamtvolumen_einnahmen %}
+                    {{ gesamtvolumen_einnahmen | round(2) }} CHF
+                {% else %}
+                    0 CHF
+                {% endif %}
             </div>
         </div>
     </div>
 </div>
+
+<div class="container mt-4">
+
+    <div class="row">
+        <!-- Ausgaben pro Kategorie Diagramm -->
+        <div class="col-md-6">
+            {% if plot_url_ausgaben %}
+                <img src="data:image/png;base64,{{ plot_url_ausgaben }}" alt="Ausgaben pro Kategorie" class="img-fluid">
+            {% else %}
+                <p>Diagramm der Ausgaben konnte nicht geladen werden.</p>
+            {% endif %}
+        </div>
+
+        <!-- Einnahmen pro Kategorie Diagramm -->
+        <div class="col-md-6">
+            {% if plot_url_einnahmen %}
+                <img src="data:image/png;base64,{{ plot_url_einnahmen }}" alt="Einnahmen pro Kategorie" class="img-fluid">
+            {% else %}
+                <p>Diagramm der Einnahmen konnte nicht geladen werden.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
 {% endblock %}
