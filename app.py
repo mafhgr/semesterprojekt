@@ -26,11 +26,14 @@ def dashboard():
         float(t['Betrag']) for t in transaktionen if t['Transaktionsart'] == 'Ausgabe')
     gesamtvolumen_einnahmen = sum(
         float(t['Betrag']) for t in transaktionen if t['Transaktionsart'] == 'Einnahme')
+    
+    budgets = load_budgets()
+    gesamtbudget = sum(float(budget['amount']) for budget in budgets)
 
     plot_url_ausgaben = kategorie_spezifische_ausgaben(transaktionen)
     plot_url_einnahmen = einnahmen_pro_kategorie(transaktionen)
 
-    return render_template('dashboard.html', anzahl_transaktionen=anzahl_transaktionen, gesamtvolumen_ausgaben=gesamtvolumen_ausgaben, gesamtvolumen_einnahmen=gesamtvolumen_einnahmen, plot_url_ausgaben=plot_url_ausgaben, plot_url_einnahmen=plot_url_einnahmen)
+    return render_template('dashboard.html', gesamtbudget=gesamtbudget, anzahl_transaktionen=anzahl_transaktionen, gesamtvolumen_ausgaben=gesamtvolumen_ausgaben, gesamtvolumen_einnahmen=gesamtvolumen_einnahmen, plot_url_ausgaben=plot_url_ausgaben, plot_url_einnahmen=plot_url_einnahmen)
 
 
 # Funktionen für das Erstellen von Diagrammen zu Ausgaben und Einnahmen

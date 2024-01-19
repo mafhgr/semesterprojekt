@@ -3,6 +3,10 @@ content %}
 
 <div class="container mt-4">
   <h1 class="mb-4">Dashboard</h1>
+    <!-- Anzeige des gesamt eingegebenen Budgets -->
+  <div class="alert alert-primary" role="alert">
+    <h4>Gesamtbudget: {{ gesamtbudget | round(2) }} CHF</h4>
+  </div>
 
   <div class="row">
     <div class="col-md-4">
