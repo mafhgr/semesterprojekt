@@ -28,7 +28,10 @@ def dashboard():
         float(t['Betrag']) for t in transaktionen if t['Transaktionsart'] == 'Einnahme')
     
     budgets = load_budgets()
-    gesamtbudget = sum(float(budget['amount']) for budget in budgets)
+    if budgets:
+        gesamtbudget = sum(float(budget['amount']) for budget in budgets)
+    else:
+        gesamtbudget = 0
 
     plot_url_ausgaben = kategorie_spezifische_ausgaben(transaktionen)
     plot_url_einnahmen = einnahmen_pro_kategorie(transaktionen)
