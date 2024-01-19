@@ -7,32 +7,33 @@ import base64
 from uuid import uuid4
 
 
-
+# Initialisiert die Flask-Anwendung
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'hjshjhdjah kjshkjdhjs'
+# Setzt den geheimen Schlüssel für Sessions
 
-
-
-
+# Route zur Startseite, die das Dashboard-Template rendert
 @app.route('/')
 def home():
     return render_template('dashboard.html')
 
+# Dashboard-Route, die Transaktionsdaten lädt und an das Template weitergibt
 @app.route('/dashboard')
 def dashboard():
     transaktionen = load_transactions()
     anzahl_transaktionen = len(transaktionen)
-    gesamtvolumen_ausgaben = sum(float(t['Betrag']) for t in transaktionen if t['Transaktionsart'] == 'Ausgabe')
-    gesamtvolumen_einnahmen = sum(float(t['Betrag']) for t in transaktionen if t['Transaktionsart'] == 'Einnahme')
-    
+    gesamtvolumen_ausgaben = sum(
+        float(t['Betrag']) for t in transaktionen if t['Transaktionsart'] == 'Ausgabe')
+    gesamtvolumen_einnahmen = sum(
+        float(t['Betrag']) for t in transaktionen if t['Transaktionsart'] == 'Einnahme')
+
     plot_url_ausgaben = kategorie_spezifische_ausgaben(transaktionen)
     plot_url_einnahmen = einnahmen_pro_kategorie(transaktionen)
 
-    return render_template('dashboard.html', anzahl_transaktionen=anzahl_transaktionen, 
-                           gesamtvolumen_ausgaben=gesamtvolumen_ausgaben,
-                           gesamtvolumen_einnahmen=gesamtvolumen_einnahmen, plot_url_ausgaben=plot_url_ausgaben, plot_url_einnahmen=plot_url_einnahmen)
+    return render_template('dashboard.html', anzahl_transaktionen=anzahl_transaktionen, gesamtvolumen_ausgaben=gesamtvolumen_ausgaben, gesamtvolumen_einnahmen=gesamtvolumen_einnahmen, plot_url_ausgaben=plot_url_ausgaben, plot_url_einnahmen=plot_url_einnahmen)
 
 
+# Funktionen für das Erstellen von Diagrammen zu Ausgaben und Einnahmen
 def kategorie_spezifische_ausgaben(transaktionen):
     kategorien = set(t['Kategorie'] for t in transaktionen)
     ausgaben_pro_kategorie = {k: 0 for k in kategorien}
@@ -58,6 +59,7 @@ def kategorie_spezifische_ausgaben(transaktionen):
 
     return plot_url_ausgaben
 
+
 def einnahmen_pro_kategorie(transaktionen):
     kategorien = set(t['Kategorie'] for t in transaktionen)
     einnahmen_pro_kategorie = {k: 0 for k in kategorien}
@@ -82,10 +84,11 @@ def einnahmen_pro_kategorie(transaktionen):
 
     return plot_url_einnahmen
 
-
+# Funktionen zum Speichern und Laden von Transaktionen
 def save_transactions(transactions):
     with open('semesterprojekt/transactions.json', 'w') as file:
         json.dump(transactions, file, indent=4)
+
 
 def load_transactions():
     try:
@@ -94,9 +97,7 @@ def load_transactions():
     except FileNotFoundError:
         return []
 
-
-
-
+ # Route zum Hinzufügen einer Transaktion
 @app.route('/transaktion_hinzufuegen', methods=['GET', 'POST'])
 def transaktion_hinzufuegen():
     if request.method == 'POST':
@@ -106,7 +107,6 @@ def transaktion_hinzufuegen():
         kategorie = request.form['kategorie']
         datum = request.form['datum']
         bemerkungen = request.form['bemerkungen']
-
 
         transaktionen = load_transactions()
         neue_id = len(transaktionen) + 1
@@ -128,6 +128,7 @@ def transaktion_hinzufuegen():
 
     return render_template('transaktion_hinzufuegen.html')
 
+ # Route zum Löschen einer Transaktion
 @app.route('/delete_transaktion/<int:transaktion_id>')
 def delete_transaktion(transaktion_id):
     transaktionen = load_transactions()
@@ -135,7 +136,7 @@ def delete_transaktion(transaktion_id):
     save_transactions(transaktionen)
     return redirect(url_for('transaktionsverlauf'))
 
-
+# Route zum Anzeigen des Transaktionsverlaufs
 @app.route('/transaktionsverlauf')
 def transaktionsverlauf():
     transaktionen = load_transactions()
@@ -149,6 +150,7 @@ def save_budgets(budgets):
     with open('semesterprojekt/budgets.json', 'w') as file:
         json.dump(budgets, file, indent=4)
 
+
 def load_budgets():
     try:
         with open('semesterprojekt/budgets.json', 'r') as file:
@@ -156,6 +158,7 @@ def load_budgets():
     except FileNotFoundError:
         return []
 
+# Route zur Budgetverwaltung
 @app.route('/budget', methods=['GET', 'POST'])
 def budget():
     if request.method == 'POST':
@@ -173,10 +176,11 @@ def budget():
         budgets.append(new_budget)
         save_budgets(budgets)
         return redirect(url_for('budget'))
-    
+
     budgets = load_budgets()
     return render_template('budget.html', budgets=budgets)
 
+# Route zum Löschen eines Budgets
 @app.route('/delete_budget/<budget_id>')
 def delete_budget(budget_id):
     budgets = load_budgets()
@@ -191,5 +195,7 @@ def delete_budget(budget_id):
 def catch_all(path):
     return redirect(url_for('dashboard'))
 
+
+# Startet die Anwendung im Debug-Modus auf Port 5000
 if __name__ == '__main__':
     app.run(debug=True, port=5000)

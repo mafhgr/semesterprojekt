@@ -1,82 +1,99 @@
 {% extends "base.html" %}
+<!-- Das Template erweitert 'base.html', wodurch es dessen Struktur und Stile erbt -->
 
-{% block title %}Budget{% endblock %}
+{% block title %}Budget{% endblock %} {% block content %}
 
-{% block content %}
 <div class="container mt-4">
-    <h1 class="mb-4">Monatliches Budget erstellen</h1>
-    <form action="{{ url_for('budget') }}" method="post" class="mb-4">
-        <div class="form-group">
-            <label for="month">Monat:</label>
-            <select id="month" name="month" class="form-control" required>
-                <option value="">--Bitte wählen--</option>
-                <option value="Januar">Januar</option>
-                <option value="Februar">Februar</option>
-                <option value="März">März</option>
-                <option value="April">April</option>
-                <option value="Mai">Mai</option>
-                <option value="Juni">Juni</option>
-                <option value="Juli">Juli</option>
-                <option value="August">August</option>
-                <option value="September">September</option>
-                <option value="Oktober">Oktober</option>
-                <option value="November">November</option>
-                <option value="Dezember">Dezember</option>
-            </select>
-        </div>
+  <h1 class="mb-4">Monatliches Budget erstellen</h1>
 
-        <div class="form-group">
-            <label for="category">Kategorie:</label>
-            <select name="category" id="category" class="form-control" required>
-                <option value="">--Bitte wählen--</option>
-                <option value="Miete">Miete</option>
-                <option value="Haushalt">Haushalt</option>
-                <option value="Transport">Transport</option>
-                <option value="Gesundheit">Gesundheit</option>
-                <option value="Bildung">Bildung</option>
-                <option value="Freizeit">Freizeit</option>
-                <option value="Sparen und Investieren">Sparen und Investieren</option>
-                <option value="Kinder">Kinder</option>
-                <option value="Haustiere">Haustiere</option>
-                <option value="Spenden und Geschenke">Spenden und Geschenke</option>
-                <option value="Sonstiges">Sonstiges</option>
-            </select>
-        </div>
+  <form action="{{ url_for('budget') }}" method="post" class="mb-4">
+    <!-- Formular zur Budgeterstellung, das Daten an die 'budget'-Route sendet -->
 
-        <div class="form-group">
-            <label for="amount">Betrag:</label>
-            <input type="number" id="amount" name="amount" class="form-control" step="0.01">
-        </div>
+    <div class="form-group">
+      <label for="month">Monat:</label>
+      <select id="month" name="month" class="form-control" required>
+        <!-- Dropdown-Menü zur Auswahl des Monats -->
+        <option value="">--Bitte wählen--</option>
+        <option value="Januar">Januar</option>
+        <option value="Februar">Februar</option>
+        <option value="März">März</option>
+        <option value="April">April</option>
+        <option value="Mai">Mai</option>
+        <option value="Juni">Juni</option>
+        <option value="Juli">Juli</option>
+        <option value="August">August</option>
+        <option value="September">September</option>
+        <option value="Oktober">Oktober</option>
+        <option value="November">November</option>
+        <option value="Dezember">Dezember</option>
+      </select>
+    </div>
 
-        <button type="submit" class="btn btn-primary">Budget hinzufügen</button>
-    </form>
+    <div class="form-group">
+      <label for="category">Kategorie:</label>
+      <select name="category" id="category" class="form-control" required>
+        <!-- Dropdown-Menü zur Auswahl der Kategorie -->
+        <option value="">--Bitte wählen--</option>
+        <option value="Miete">Miete</option>
+        <option value="Haushalt">Haushalt</option>
+        <option value="Transport">Transport</option>
+        <option value="Gesundheit">Gesundheit</option>
+        <option value="Bildung">Bildung</option>
+        <option value="Freizeit">Freizeit</option>
+        <option value="Sparen und Investieren">Sparen und Investieren</option>
+        <option value="Kinder">Kinder</option>
+        <option value="Haustiere">Haustiere</option>
+        <option value="Spenden und Geschenke">Spenden und Geschenke</option>
+        <option value="Sonstiges">Sonstiges</option>
+      </select>
+    </div>
 
-    {% if budgets %}
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th>Monat</th>
-                <th>Kategorie</th>
-                <th>Betrag</th>
-                <th>Aktion</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for budget in budgets %}
-                <tr>
-                    <td>{{ budget['month'] }}</td>
-                    <td>{{ budget['category'] }}</td>
-                    <td>{{ budget['amount'] }} CHF</td>
-                    <td>
-                        <a href="{{ url_for('delete_budget', budget_id=budget['id']) }}" class="btn btn-danger btn-sm">Löschen</a>
-                    </td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-{% else %}
-    <p>Keine Budgets vorhanden.</p>
-{% endif %}
+    <div class="form-group">
+      <label for="amount">Betrag:</label>
+      <input
+        type="number"
+        id="amount"
+        name="amount"
+        class="form-control"
+        step="0.01"
+      />
+    </div>
 
+    <button type="submit" class="btn btn-primary">Budget hinzufügen</button>
+  </form>
 
-{% endblock %}
+  {% if budgets %}
+  <!-- Bedingung, die prüft, ob Budgets vorhanden sind -->
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Monat</th>
+        <th>Kategorie</th>
+        <th>Betrag</th>
+        <th>Aktion</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for budget in budgets %}
+      <!-- Schleife über jedes Budget in der Liste 'budgets' -->
+      <tr>
+        <td>{{ budget['month'] }}</td>
+        <td>{{ budget['category'] }}</td>
+        <td>{{ budget['amount'] }} CHF</td>
+        <td>
+          <!-- Link zum Löschen eines Budgets -->
+          <a
+            href="{{ url_for('delete_budget', budget_id=budget['id']) }}"
+            class="btn btn-danger btn-sm"
+            >Löschen</a
+          >
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <!-- Nachricht, wenn keine Budgets vorhanden sind -->
+  <p>Keine Budgets vorhanden.</p>
+  {% endif %} {% endblock %}
+</div>

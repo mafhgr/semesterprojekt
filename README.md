@@ -37,5 +37,4 @@ Die App kann externe Datenquellen integrieren, um Transaktionsdaten aus Bankkont
 
 Die Anwendung eines Budgetplaners bietet den Benutzern die Möglichkeit, ihre finanzielle Gesundheit zu überwachen, ihre Sparziele zu erreichen und ein besseres Verständnis ihrer Einnahmen und Ausgaben zu entwickeln.
 
-Test
 

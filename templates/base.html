@@ -1,46 +1,63 @@
 <!DOCTYPE html>
 <html lang="de">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
       crossorigin="anonymous"
     />
+    <!-- Bindet Bootstrap CSS für das Styling der Seite ein -->
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
       crossorigin="anonymous"
     />
+
     <title>{% block title %}Home{% endblock %}</title>
+    <!-- Setzt den Titel der Webseite, mit der Möglichkeit zur Anpassung über Jinja2-Blöcke -->
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbar"
+      >
+        <!-- Schaltfläche für das Ein- und Ausklappen der Navigationsleiste auf kleinen Bildschirmen -->
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-</head>
-<body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-toggle="collapse"
-      data-target="#navbar"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbar">
-      <div class="navbar-nav">
-        <a class="nav-item nav-link" id="dashboard" href="/dashboard">Dashboard</a>
-        <a class="nav-item nav-link" id="transaktion_hinzufuegen" href="/transaktion_hinzufuegen">Transaktion Hinzufuegen</a>
-        <a class="nav-item nav-link" id="transaktionsverlauf" href="/transaktionsverlauf">Transaktionsverlauf</a>
-        <a class="nav-item nav-link" id="budget" href="/budget">Budget</a>
+      <div class="collapse navbar-collapse" id="navbar">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link" id="dashboard" href="/dashboard"
+            >Dashboard</a
+          >
+          <a
+            class="nav-item nav-link"
+            id="transaktion_hinzufuegen"
+            href="/transaktion_hinzufuegen"
+            >Transaktion Hinzufuegen</a
+          >
+          <a
+            class="nav-item nav-link"
+            id="transaktionsverlauf"
+            href="/transaktionsverlauf"
+            >Transaktionsverlauf</a
+          >
+          <a class="nav-item nav-link" id="budget" href="/budget">Budget</a>
+        </div>
       </div>
-    </div>
-  </nav>
-  
-  
+    </nav>
 
-  <div class="container">{% block content %} {% endblock %}</div>
+    <div class="container">{% block content %} {% endblock %}</div>
+    <!-- Hauptcontainer für den Inhalt, der über Jinja2-Blöcke dynamisch eingefügt wird -->
 
+    <!-- Java Script Implementation für Burgermenu-->
     <script
       src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
       integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -56,13 +73,12 @@
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous"
     ></script>
-    
-
 
     <footer class="text-center">
-        <hr>
-        {% block footer %}{% endblock %} 
-        &copy; 2024 Marc Aerne
+      <hr />
+      {% block footer %}{% endblock %}
+      <!-- Platzhalter für den Fußzeileninhalt, der über Jinja2-Blöcke dynamisch eingefügt wird -->
+      &copy; 2024 Marc Aerne
     </footer>
-</body>
+  </body>
 </html>

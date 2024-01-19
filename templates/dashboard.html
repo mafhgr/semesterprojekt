@@ -1,63 +1,78 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% block title %}Dashboard{% endblock %} {% block
+content %}
 
-{% block title %}Dashboard{% endblock %}
-
-{% block content %}
 <div class="container mt-4">
-    <h1 class="mb-4">Dashboard</h1>
+  <h1 class="mb-4">Dashboard</h1>
 
-    <div class="row">
-        <div class="col-md-4">
-            <div class="alert alert-info">
-                <strong>Anzahl Transaktionen:</strong> {{ anzahl_transaktionen }}
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <div class="alert alert-warning">
-                <strong>Gesamte Ausgaben:</strong> 
-                {% if gesamtvolumen_ausgaben %}
-                    {{ gesamtvolumen_ausgaben | round(2) }} CHF
-                {% else %}
-                    0 CHF
-                {% endif %}
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <div class="alert alert-success">
-                <strong>Gesamte Einnahmen:</strong> 
-                {% if gesamtvolumen_einnahmen %}
-                    {{ gesamtvolumen_einnahmen | round(2) }} CHF
-                {% else %}
-                    0 CHF
-                {% endif %}
-            </div>
-        </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="alert alert-info">
+        <strong>Anzahl Transaktionen:</strong> {{ anzahl_transaktionen }}
+        <!-- Anzeige der Anzahl der Transaktionen -->
+      </div>
     </div>
+
+    <div class="col-md-4">
+      <div class="alert alert-warning">
+        <strong>Gesamte Ausgaben:</strong>
+        {% if gesamtvolumen_ausgaben %}
+        <!-- Überprüfung, ob ein Gesamtvolumen der Ausgaben vorhanden ist -->
+        {{ gesamtvolumen_ausgaben | round(2) }} CHF
+        <!-- Anzeige des gerundeten Gesamtvolumens der Ausgaben -->
+        {% else %} 0 CHF
+        <!-- Anzeige von 0, wenn keine Ausgaben vorhanden sind -->
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="alert alert-success">
+        <strong>Gesamte Einnahmen:</strong>
+        {% if gesamtvolumen_einnahmen %}
+        <!-- Überprüfung, ob ein Gesamtvolumen der Einnahmen vorhanden ist -->
+        {{ gesamtvolumen_einnahmen | round(2) }} CHF
+        <!-- Anzeige des gerundeten Gesamtvolumens der Einnahmen -->
+        {% else %} 0 CHF
+        <!-- Anzeige von 0, wenn keine Einnahmen vorhanden sind -->
+        {% endif %}
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="container mt-4">
-
-    <div class="row">
-        <!-- Ausgaben pro Kategorie Diagramm -->
-        <div class="col-md-6">
-            {% if plot_url_ausgaben %}
-                <img src="data:image/png;base64,{{ plot_url_ausgaben }}" alt="Ausgaben pro Kategorie" class="img-fluid">
-            {% else %}
-                <p>Diagramm der Ausgaben konnte nicht geladen werden.</p>
-            {% endif %}
-        </div>
-
-        <!-- Einnahmen pro Kategorie Diagramm -->
-        <div class="col-md-6">
-            {% if plot_url_einnahmen %}
-                <img src="data:image/png;base64,{{ plot_url_einnahmen }}" alt="Einnahmen pro Kategorie" class="img-fluid">
-            {% else %}
-                <p>Diagramm der Einnahmen konnte nicht geladen werden.</p>
-            {% endif %}
-        </div>
+  <div class="row">
+    <!-- Ausgaben pro Kategorie Diagramm -->
+    <div class="col-md-6">
+      {% if plot_url_ausgaben %}
+      <!-- Überprüfung, ob eine URL für das Ausgaben-Diagramm vorhanden ist -->
+      <img
+        src="data:image/png;base64,{{ plot_url_ausgaben }}"
+        alt="Ausgaben pro Kategorie"
+        class="img-fluid"
+      />
+      <!-- Anzeige des Diagramms der Ausgaben -->
+      {% else %}
+      <p>Diagramm der Ausgaben konnte nicht geladen werden.</p>
+      <!-- Nachricht, wenn das Ausgaben-Diagramm nicht geladen werden kann -->
+      {% endif %}
     </div>
+    <!-- Einnahmen pro Kategorie Diagramm -->
+    <div class="col-md-6">
+      {% if plot_url_einnahmen %}
+      <!-- Überprüfung, ob eine URL für das Einnahmen-Diagramm vorhanden ist -->
+      <img
+        src="data:image/png;base64,{{ plot_url_einnahmen }}"
+        alt="Einnahmen pro Kategorie"
+        class="img-fluid"
+      />
+      <!-- Anzeige des Diagramms der Einnahmen -->
+      {% else %}
+      <p>Diagramm der Einnahmen konnte nicht geladen werden.</p>
+      <!-- Nachricht, wenn das Einnahmen-Diagramm nicht geladen werden kann -->
+      {% endif %}
+    </div>
+  </div>
 </div>
 
 {% endblock %}

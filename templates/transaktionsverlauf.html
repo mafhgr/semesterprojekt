@@ -1,43 +1,56 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% block title %}Transaktionsverlauf{% endblock %} {%
+block content %}
 
-{% block title %}Transaktionsverlauf{% endblock %}
-
-{% block content %}
 <div class="container mt-4">
-    <h1 class="mb-4">Transaktionsverlauf</h1>
+  <h1 class="mb-4">Transaktionsverlauf</h1>
+  {% if transaktionen %}
+  <!-- Überprüft, ob Transaktionen vorhanden sind -->
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Transaktion</th>
+        <th>Transaktionsart</th>
+        <th>Betrag</th>
+        <th>Kategorie</th>
+        <th>Datum</th>
+        <th>Bemerkungen</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for transaktion in transaktionen %}
+      <!-- Schleife über alle Transaktionen -->
+      <tr>
+        <!-- Zeile für jede Transaktion -->
+        <td>{{ transaktion['Transaktion'] }}</td>
+        <td>{{ transaktion['Transaktionsart'] }}</td>
+        <td>
+          {{ "{:,.2f}".format(transaktion['Betrag']).replace(",", "'") }} CHF
+        </td>
+        <!-- Formatierung des Betrags mit Tausendertrennzeichen -->
+        <td>{{ transaktion['Kategorie'] }}</td>
+        <td>{{ transaktion['Datum'] }}</td>
+        <td>{{ transaktion['Bemerkungen'] }}</td>
+        <td>
+          <!-- Link zum Löschen einer Transaktion -->
+          <a
+            href="{{ url_for('delete_transaktion', transaktion_id=transaktion['id']) }}"
+            class="btn btn-danger btn-sm"
+            >Löschen</a
+          >
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <!-- Nachricht, wenn keine Transaktionen vorhanden sind -->
+  <p>Keine Transaktionen vorhanden.</p>
+  {% endif %}
 
-    {% if transaktionen %}
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Transaktion</th>
-                    <th>Transaktionsart</th>
-                    <th>Betrag</th>
-                    <th>Kategorie</th>
-                    <th>Datum</th>
-                    <th>Bemerkungen</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for transaktion in transaktionen %}
-                    <tr>
-                        <td>{{ transaktion['Transaktion'] }}</td>
-                        <td>{{ transaktion['Transaktionsart'] }}</td>
-                        <td>{{ "{:,.2f}".format(transaktion['Betrag']).replace(",", "'") }} CHF</td>
-                        <td>{{ transaktion['Kategorie'] }}</td>
-                        <td>{{ transaktion['Datum'] }}</td>
-                        <td>{{ transaktion['Bemerkungen'] }}</td>
-                        <td>
-                            <a href="{{ url_for('delete_transaktion', transaktion_id=transaktion['id']) }}" class="btn btn-danger btn-sm">Löschen</a>
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    {% else %}
-        <p>Keine Transaktionen vorhanden.</p>
-    {% endif %}
-
-    <a href="/transaktion_hinzufuegen" class="btn btn-primary mt-3">Weitere Transaktion hinzufügen</a>
+  <!-- Link zum Hinzufügen weiterer Transaktionen -->
+  <a href="/transaktion_hinzufuegen" class="btn btn-primary mt-3"
+    >Weitere Transaktion hinzufügen</a
+  >
 </div>
+
 {% endblock %}
