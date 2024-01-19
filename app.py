@@ -92,13 +92,13 @@ def einnahmen_pro_kategorie(transaktionen):
 
 # Funktionen zum Speichern und Laden von Transaktionen
 def save_transactions(transactions):
-    with open('semesterprojekt/transactions.json', 'w') as file:
+    with open('/transactions.json', 'w') as file:
         json.dump(transactions, file, indent=4)
 
 
 def load_transactions():
     try:
-        with open('semesterprojekt/transactions.json', 'r') as file:
+        with open('/transactions.json', 'r') as file:
             return json.load(file)
     except FileNotFoundError:
         return []
@@ -153,13 +153,13 @@ def transaktionsverlauf():
 
 # Funktionen für Budgets
 def save_budgets(budgets):
-    with open('semesterprojekt/budgets.json', 'w') as file:
+    with open('/budgets.json', 'w') as file:
         json.dump(budgets, file, indent=4)
 
 
 def load_budgets():
     try:
-        with open('semesterprojekt/budgets.json', 'r') as file:
+        with open('/budgets.json', 'r') as file:
             return json.load(file)
     except FileNotFoundError:
         return []
